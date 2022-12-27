@@ -4,7 +4,6 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.widget.NestedScrollView;
@@ -15,7 +14,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -25,7 +23,7 @@ import android.widget.Toast;
 import com.example.todoapp.Adapter.SpinnerAdapter;
 import com.example.todoapp.Adapter.TodoAdapter;
 import com.example.todoapp.Custom.Debouncer;
-import com.example.todoapp.Custom.PaginationScrollListener;
+import com.example.todoapp.Custom.ThreadUtils;
 import com.example.todoapp.Model.ResponseModel;
 import com.example.todoapp.Model.SpinnerItem;
 import com.example.todoapp.Model.TodoModel;
@@ -225,7 +223,15 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-
+//                ThreadUtils.debounce(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        currentPage = 1;
+//                        todoList.clear();
+//                        todoAdapter.notifyDataSetChanged();
+//                        GetAllTasks();
+//                    }
+//                }, 1000);
             }
         });
     }
